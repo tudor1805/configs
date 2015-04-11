@@ -1,6 +1,9 @@
 # GNU Screen - main configuration file
 # All other .screenrc files will source this file to inherit settings.
 
+# References:
+#	http://www.gnu.org/software/screen/manual/screen.html
+
 ###########################
 #### Terminal settings ####
 ###########################
@@ -23,7 +26,9 @@ term xterm-256color
 # Cache 30000 lines for scroll back
 defscrollback 30000
 
-startup_message "off"
+vbell off
+
+startup_message off
 
 ######################
 #### Screen Saver ####
@@ -36,20 +41,38 @@ startup_message "off"
 idle 30 blanker
 blankerprg cmatrix
 
+###################
+#### Backticks ####
+###################
+
+backtick 1 60 60 $HOME/.screen_bin/get_uptime
+backtick 2 60 60 $HOME/.screen_bin/get_cputemp Core0
+backtick 3 60 60 $HOME/.screen_bin/get_freemem
+backtick 4 60 60 $HOME/.screen_bin/get_freeswap
+
 #####################
 #### Status Line ####
 #####################
 
-caption "%:3n %t"
+caption splitonly "%3n %t"
 
 hardstatus alwayslastline
 
-# Variant 1
+# Variant 1 "Blue"
 hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ]  %-= %{bG} %H %{bW} | %D %M %d %Y | %{= bG} %C %A %{-} '
 
-# Variant 2
-#hardstatus string '%%{= Kg}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
- 
+# Variant 2 "Cyan" + system load
+# hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= | %1` | %2`C | %3`/%sd | %c %d/%m/%Y"
+
+# Variant 3 "Green" + system load
+# hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
+
+# Variant 4 "Black-centered"
+# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+# Variant 5 "Gray" (Decent contrast)
+# hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+
 # change command character from ctrl-a to ctrl-b (emacs users may want this)
 # escape ^Bb
 
@@ -60,6 +83,11 @@ hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ]  %-= %{bG} %
 # Hide/Show hardstatus: ctrl-a f
 bind f eval "hardstatus ignore"
 bind F eval "hardstatus alwayslastline"
+
+# Move through window
+# Move through windowss
+bind ',' prev
+bind '.' next
 
 # Move to the next screen region
 bind j focus down
