@@ -1,0 +1,69 @@
+# GNU Screen - main configuration file
+# All other .screenrc files will source this file to inherit settings.
+
+###########################
+#### Terminal settings ####
+###########################
+
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# Enables use of shift-PgUp and shift-PgDn
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
+
+# Erase background with current bg color
+defbce "on"
+
+# Enable 256 color term
+term xterm-256color
+
+# Cache 30000 lines for scroll back
+defscrollback 30000
+
+startup_message "off"
+
+######################
+#### Screen Saver ####
+######################
+
+# Lock screen after some specific idle time
+# idle 30 lockscreen
+
+# Activate screen saver progrem
+idle 30 blanker
+blankerprg cmatrix
+
+#####################
+#### Status Line ####
+#####################
+
+caption "%:3n %t"
+
+hardstatus alwayslastline
+
+# Variant 1
+hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ]  %-= %{bG} %H %{bW} | %D %M %d %Y | %{= bG} %C %A %{-} '
+
+# Variant 2
+#hardstatus string '%%{= Kg}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+ 
+# change command character from ctrl-a to ctrl-b (emacs users may want this)
+# escape ^Bb
+
+######################
+#### Key bindings ####
+######################
+
+# Hide/Show hardstatus: ctrl-a f
+bind f eval "hardstatus ignore"
+bind F eval "hardstatus alwayslastline"
+
+# Move to the next screen region
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+
