@@ -37,9 +37,9 @@ startup_message off
 # Lock screen after some specific idle time
 # idle 30 lockscreen
 
-# Activate screen saver progrem
-idle 30 blanker
-blankerprg cmatrix
+# Activate cool screen saver progrem
+# idle 60 blanker
+# blankerprg $HOME/.screen_bin/screensaver
 
 ###################
 #### Backticks ####
@@ -49,28 +49,66 @@ backtick 1 60 60 $HOME/.screen_bin/get_uptime
 backtick 2 60 60 $HOME/.screen_bin/get_cputemp Core0
 backtick 3 60 60 $HOME/.screen_bin/get_freemem
 backtick 4 60 60 $HOME/.screen_bin/get_freeswap
+backtick 5 60 60 $HOME/.screen_bin/get_mgmt_ip
+backtick 6 60 60 $HOME/.screen_bin/get_user
+
+###############
+#### Title ####
+###############
+
+# Set the title based on current location
+# You might want to add this code into ~/.bashrc
+
+#case "$TERM" in
+#        xterm*|rxvt*)
+#        screen_set_window_title () {
+#          local HPWD="$PWD"
+#          case $HPWD in
+#            $HOME) HPWD="~";;
+#            $HOME/*) HPWD="~${HPWD#$HOME}";;
+#          esac
+#          printf '\ek%s\e\\' "$HPWD"
+#        }
+#        PROMPT_COMMAND="screen_set_window_title; $PROMPT_COMMAND"
+#        ;;
+#esac
 
 #####################
 #### Status Line ####
 #####################
 
-caption splitonly "%3n %t"
+# The caption is whown when enabling multiple regions
+
+# Variant 1 - basic
+# caption splitonly "%3n %t"
+
+# Variant 2 - color the caption of the current window
+caption splitonly "%?%F%{.r.}%?%3n %t%? [%h]%?"
 
 hardstatus alwayslastline
 
-# Variant 1 "Blue"
-hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ]  %-= %{bG} %H %{bW} | %D %M %d %Y | %{= bG} %C %A %{-} '
+# Variant 1 "Green"
+#hardstatus string '%{= gk} [%{= gk} %-w%{= gb}%{= kg}(%{= kg}%n %t%{= kg})%{= kg}%{= gk}%+w] %-= %{gk} %H %{gk}| %D %M %d %Y |%C %A %{-} '
 
-# Variant 2 "Cyan" + system load
+# Variant 2 "Blue"
+hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ]  %-= %{bG} %?%6`@%?%H %?(%5`)%?%{bW} | %D %M %d %Y |%{= bG}%C %A %{-} '
+
+# Variant 2 "Testing"
+#hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ] %{+ bw} %= %{bG} %h%?(%5`)%?%{bW} | %D %M %d %Y |%{= bG}%C %A %{-} '
+
+# Variant 3 "Blue - Orig"
+#hardstatus string '%{= bw} [%{= bW} %-w %{= bW}(%n %t)%{= bw} %+w ]  %-= %{bG} %H %{bW} | %D %M %d %Y |%{= bG}%C %A %{-} '
+
+# Variant 4 "Cyan" + system load
 # hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= | %1` | %2`C | %3`/%sd | %c %d/%m/%Y"
 
-# Variant 3 "Green" + system load
+# Variant 5 "Green" + system load
 # hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
 
-# Variant 4 "Black-centered"
+# Variant 6 "Black-centered"
 # hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
 
-# Variant 5 "Gray" (Decent contrast)
+# Variant 7 "Gray" (Decent contrast)
 # hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
 
 # change command character from ctrl-a to ctrl-b (emacs users may want this)

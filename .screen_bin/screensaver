@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# V1 - cool matrix-like screensaver
+# bin_file="$(which cmatrix &> /dev/null)"
+# if [ "$?" -eq "0" ] ; then
+# 	cmatrix
+# fi
+ 
+# # V2 - date banner
+# bin_file="$(which figlet &> /dev/null)"
+# if [ "$?" -eq "0" ] ; then
+# 	while true; do
+# 		date | figlet
+# 		sleep 1
+# 		clear
+# 	done
+# fi
+
+# V3 - talking cow
+# bin_file="$(which cowsay &> /dev/null)"
+# if [ "$?" -eq "0" ] ; then
+#	clear
+#	cowsay -f /usr/share/cowsay/cows/tux.cow "Press any key to continue!"
+# fi
+
+# V4 - termsaver
+# bin_file="$(which termsaver &> /dev/null)"
+# if [ "$?" -eq "0" ] ; then
+#	termsaver clock
+# fi
+

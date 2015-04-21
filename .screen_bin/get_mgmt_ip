@@ -1,0 +1,11 @@
+#!/bin/sh
+
+default_gw_ip="$(ip r s | grep default | awk '{print $3}')"
+default_gw_eth="$(ip r s | grep default | awk '{print $5}')"
+
+if [ -n "$default_gw_eth" ] ; then
+	mgmt_ip="$(ip addr show "$default_gw_eth" | grep -w 'inet' | awk '{print $2}')"
+fi
+
+echo "$mgmt_ip"
+
