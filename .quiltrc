@@ -1,0 +1,18 @@
+# Config file for Quilt
+
+# Paths
+QUILT_PATCHES=patches # Ex: for debian packages: debian/patches
+QUILT_SERIES="series"
+QUILT_PC=".pc"
+
+# These two appear to not be working on my machine
+# Use "--no-timestamps --no-index" as a workaround
+# QUILT_NO_DIFF_TIMESTAMP="1"
+# QUILT_NO_DIFF_INDEX="1"
+
+QUILT_PUSH_ARGS="--color=auto"
+QUILT_DIFF_ARGS="--no-timestamps --no-index -p ab --color=auto"
+QUILT_REFRESH_ARGS="--no-timestamps --no-index -p ab"
+QUILT_DIFF_OPTS="-p"
+QUILT_PATCH_OPTS="--unified"
+EDITOR="vim"
