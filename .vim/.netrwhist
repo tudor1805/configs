@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/tcornea/iso'
+let g:netrw_dirhist_2='/opt/perf_repos/perforce3/ixos/main/linux/port/kernel/ixgbe'
+let g:netrw_dirhist_3='/opt/perf_repos/perforce2/packages/l23linecards/app/gerrit/ixvmtxrx/src/libsstream'

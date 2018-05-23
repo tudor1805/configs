@@ -1,0 +1,23 @@
+colorscheme koehler
+
+set laststatus=2
+set number
+set ignorecase
+set smartcase 
+set title
+set fileformats=unix
+set cursorline
+set incsearch
+set hlsearch
+set omnifunc=syntaxcomplete#Complete
+filetype plugin on
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set background=dark
+set splitbelow
+set splitright
+
